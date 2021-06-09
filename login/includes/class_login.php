@@ -11,8 +11,8 @@ class login{
     }
 
     function validar_usuario(){
-        $usuario_real = "miguel@bictia.com";
-        $pass_real = "miguelito123";
+        $usuario_real = "miguel@bictia.com"; //datos almacenados en la bd
+        $pass_real = "miguelito123";//datos almacenados en la bd
 
         $mensaje_error = "Datos invalidos, rectifiquelos";
 
