@@ -1,31 +1,26 @@
 <?php
 
-class Conexion{
+class Conexion_pp{
     private $host = "localhost";
     private $user = "root";
     private $pass = "";
-    private $database = "julio_arango";
-    private $conexion_resp;
+    private $db = "julio_arango";
+    private $connect_db;
 
     function __construct()
     {
-        $pdo_conex = "mysql:hos=".$this->host.";dbname=".$this->database.";charset=utf8";
+        $foca_conectate = "mysql:hos=".$this->host.";dbname=".$this->db.";charset=utf8";
         try{
-            $this->conexion_resp = new PDO($pdo_conex, $this->user, $this->pass);
-            echo "Conexion exitosa :D";
-        }catch(Exception $a){
-            $this->conexion_resp = "Error al conectar con la BD";
-            echo "Error :(    --->".$a->getMessage();
+            $this->connect_db = new PDO($foca_conectate, $this->user, $this->pass);
+            // echo "la conexion se realizo correctamente :D";
+        }catch(Exception $s){
+            $this->connect_db = "Error al conectar con la BD :(  ";
+            echo $this->connect_db.$s->getMessage();
         }
     }
 
-    function connect(){
-        return $this->conexion_resp;
+    function conexion_bases_datos(){
+        return $this->connect_db;
     }
-
 }
 
-$bictia_conexion = new Conexion;
-?>
-
-<img src="<?php $iimagen ?>" alt="">
