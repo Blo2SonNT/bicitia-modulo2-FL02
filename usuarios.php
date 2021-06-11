@@ -1,8 +1,40 @@
-<?php
-require_once "includes/class_usuario.php";
+<!DOCTYPE html>
+<html lang="en">
 
-$usuario_form = new Usuario();
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
 
-$insert_user = $usuario_form->crear_usuario("miguel", "guitierrez", "correo@correo.com", "1999-12-24", 1, true);
-echo $insert_user;
+<body>
+    <?php
+    require_once "includes/class_usuario.php";
 
+    $usuario_form = new Usuario();
+
+    if (empty($_POST['name_form_user'])) {
+        echo '
+            <div class="alert alert-danger" role="alert">
+            LLENE TODOS LOS CAMPOS
+            </div>
+            ';
+        return;
+    } elseif (!filter_var($_POST['email_form_user'], FILTER_VALIDATE_EMAIL)) {
+        echo '
+            <div class="alert alert-danger" role="alert">
+            EL CORREO NO ES VALIDO
+            </div>
+            ';
+        return;
+    }
+
+    $insert_user = $usuario_form->crear_usuario($_POST['name_form_user'],$_POST['apell_form_user'],$_POST['email_form_user'],$_POST['date_form_user'],$_POST['genero_form_user'],true);
+    echo $insert_user;
+
+    ?>
+</body>
+
+</html>
