@@ -11,12 +11,15 @@ class Usuario extends Conexion_pp{
     private $acepta_tyc_user;
     private $conexion_bd;
     
+    //METODO CONSTRUCTOR PARA HACER LA CONEXION A LA BASE DE DATOS HEREDANDO LOS METODOS DE LA CLASE CONEXION
     function __construct()
     {
         $this->conexion_bd = new Conexion_pp();
         $this->conexion_bd = $this->conexion_bd->conexion_bases_datos();
     }
 
+
+    //METODO QUE NOS PERMITE A NOSOTROS CREAR UN DATO PARA GUARDALO EN LA BD
     function crear_usuario($nombre, $apellido, $correo, $fec_nac, $genero, $tyc){
         $this->nombre_user = $nombre;
         $this->apellido_user = $apellido;
@@ -37,7 +40,16 @@ class Usuario extends Conexion_pp{
         $insert->execute($array_data_user);
         $id_user_last = $this->conexion_bd->lastInsertId();
         return $id_user_last;
-            
-
+        
     }
+
+    //METODO QUE NOS PERMITE CONSULTAR TODA LA INFORMACION DE UNA TABLA
+    function consulta_usuarios(){
+        $query_consulta = "SELECT * FROM tb_usuarios";
+        $consulta = $this->conexion_bd->query($query_consulta);
+        $respuesta = $consulta->fetchall(PDO::FETCH_ASSOC);
+        return $respuesta;
+    }
+
+    
 }
