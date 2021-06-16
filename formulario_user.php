@@ -56,6 +56,14 @@
             </div>
         </div>
     </div>
+    <br>
+    <hr>
+    <hr>
+    <hr>
+    <br>
+    <div class="container">
+        <a href="consulta_usuarios.php?gato_user=4">Consultar info</a>
+    </div>
 </body>
 
 </html>

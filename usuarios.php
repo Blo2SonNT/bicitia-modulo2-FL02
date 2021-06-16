@@ -15,24 +15,37 @@
 
     $usuario_form = new Usuario();
 
-    if (empty($_POST['name_form_user'])) {
-        echo '
-            <div class="alert alert-danger" role="alert">
-            LLENE TODOS LOS CAMPOS
-            </div>
-            ';
-        return;
-    } elseif (!filter_var($_POST['email_form_user'], FILTER_VALIDATE_EMAIL)) {
-        echo '
-            <div class="alert alert-danger" role="alert">
-            EL CORREO NO ES VALIDO
-            </div>
-            ';
-        return;
+    if(!isset($_GET['update'])){
+        if (empty($_POST['name_form_user'])) {
+            echo '
+                <div class="alert alert-danger" role="alert">
+                LLENE TODOS LOS CAMPOS
+                </div>
+                ';
+            return;
+        } elseif (!filter_var($_POST['email_form_user'], FILTER_VALIDATE_EMAIL)) {
+            echo '
+                <div class="alert alert-danger" role="alert">
+                EL CORREO NO ES VALIDO
+                </div>
+                ';
+            return;
+        }
+    
+        $insert_user = $usuario_form->crear_usuario($_POST['name_form_user'],$_POST['apell_form_user'],$_POST['email_form_user'],$_POST['date_form_user'],$_POST['genero_form_user'],true);
+        echo $insert_user;
+    }else{
+        $update_user = $usuario_form->actualiza_usuario(
+            $_POST['id_form_user'], 
+            $_POST['name_form_user'],
+            $_POST['apell_form_user'],
+            $_POST['email_form_user'],
+            $_POST['date_form_user'], 
+            $_POST['genero_form_user'], 
+            true
+        );
+        echo $update_user;
     }
-
-    $insert_user = $usuario_form->crear_usuario($_POST['name_form_user'],$_POST['apell_form_user'],$_POST['email_form_user'],$_POST['date_form_user'],$_POST['genero_form_user'],true);
-    echo $insert_user;
 
     ?>
 </body>
