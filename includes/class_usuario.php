@@ -59,7 +59,7 @@ class Usuario extends Conexion_pp
     }
 
     //METODO QUE NOS PERMITE CONSULTAR UN USUARIO EN ESPECIFICO
-    function consulta_usuario_x_id($id )
+    function consulta_usuario_x_id($id)
     {
         $query_x_id = "SELECT * FROM tb_usuarios WHERE id_usuario = ?";
         $consulta = $this->conexion_bd->prepare($query_x_id);
@@ -93,5 +93,15 @@ class Usuario extends Conexion_pp
         );
         $respuesta = $update->execute($array_update);
         return $respuesta;
+    }
+
+    //METODO QUE NOS PERMITE BORRAR UN DATO DE NUESTRA TABLA
+    function eliminar_usuario($id)
+    {
+        $query_x_id = "DELETE FROM tb_usuarios WHERE id_usuario = ?";
+        $consulta = $this->conexion_bd->prepare($query_x_id);
+        $array_where = array($id);
+        $consulta->execute($array_where);
+        return "Usuario eliminado correctamente";
     }
 }
