@@ -10,7 +10,7 @@ $usuarios = $usuario_form->consulta_usuarios();
 //deben de recorrer esa informacion usando for(recomendado) o foreach 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">

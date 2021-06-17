@@ -32,7 +32,7 @@
             return;
         }
     
-        $insert_user = $usuario_form->crear_usuario($_POST['name_form_user'],$_POST['apell_form_user'],$_POST['email_form_user'],$_POST['date_form_user'],$_POST['genero_form_user'],true);
+        $insert_user = $usuario_form->crear_usuario($_POST['name_form_user'],$_POST['apell_form_user'],$_POST['email_form_user'],$_POST['date_form_user'],$_POST['genero_form_user'],true, $_POST['rol_form_user']);
         echo $insert_user;
     }else{
         $update_user = $usuario_form->actualiza_usuario(
@@ -42,7 +42,8 @@
             $_POST['email_form_user'],
             $_POST['date_form_user'], 
             $_POST['genero_form_user'], 
-            true
+            true,
+            $_POST['rol_form_user']
         );
         echo $update_user;
     }

@@ -1,3 +1,12 @@
+<?php
+require_once "includes/class_rol.php";
+$rol_sistema = new Rol();
+
+$roles = $rol_sistema->rol_sistema();
+// print_r("<pre>");
+// print_r($roles);exit;
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -40,6 +49,20 @@
                                 <option value="1">Hombre</option>
                                 <option value="2">Mujer</option>
                                 <option value="3">Pokemon</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="rol_form_user">Rol usuario</label>
+                            <select id="rol_form_user" name="rol_form_user" class="form-control">
+                                <option disabled selected value="">Seleccione uno...</option>
+                                <?php
+                                //FORMA 3.1
+                                foreach ($roles as $data_rol) {
+                                    ?>
+                                    <option value="<?php echo $data_rol['id_rol'] ?>"><?php echo $data_rol['nombre'] ?></option>
+                                    <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
